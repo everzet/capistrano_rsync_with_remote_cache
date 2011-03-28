@@ -45,7 +45,7 @@ module Capistrano
         
         def rsync_command_for(server)
           ssh_options_string = "-p #{ssh_port(server)}"
-          ssh_options_string << " -i #{ssh_options[:keys]}" if ssh_options[:keys]
+          ssh_options_string << " -i #{ssh_options[:keys].first}" if ssh_options[:keys]
           "rsync #{rsync_options} --rsh='ssh #{ssh_options_string}' #{local_cache_path}/ #{rsync_host(server)}:#{repository_cache_path}/"
         end
         
